@@ -1,0 +1,46 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Terrarium" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_gradient</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="colorPrimary">#3D094E</item>
+        <item name="colorPrimaryDark">#3D094E</item>
+        <item name="fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="Widget.BottomNavigationView.Rounded" parent="Widget.MaterialComponents.BottomNavigationView">
+        <item name="android:background">@drawable/rounded_bg</item>
+        <item name="itemIconTint">@color/bottom_nav_icon_design</item>
+        <item name="itemTextColor">@color/bottom_nav_icon_design</item>
+    </style>
+
+    <style name="ButtonDesign">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">#42325E</item>
+    </style>
+
+    <style name="ButtonDesignOsn">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">#42325E</item>
+        <item name="fontFamily">@font/montserrat_bold</item>
+    </style>
+
+    <style name="EditDesign">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="TimePickerTheme" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:timePickerStyle">@style/CustomTimePicker</item>
+    </style>
+
+    <style name="CustomTimePicker" parent="android:Widget.Material.TimePicker">
+        <item name="android:headerBackground">@android:color/white</item>
+        <item name="android:numbersTextColor">@android:color/white</item>
+        <item name="android:amPmTextColor">@android:color/white</item>
+    </style>
+
+
+
+
+</resources>
