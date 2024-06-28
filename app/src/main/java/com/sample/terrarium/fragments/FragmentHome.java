@@ -2,6 +2,7 @@ package com.sample.terrarium.fragments;
 
 import androidx.fragment.app.Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.view.LayoutInflater;
@@ -35,6 +36,10 @@ public class FragmentHome extends Fragment {
     private TextView textC;
     private TextView textH;
     private Vibrator vibrator;
+    private Button buttonR1;
+    private Button buttonR2;
+    private Button buttonR3;
+
 
     @Nullable
     @Override
@@ -43,9 +48,9 @@ public class FragmentHome extends Fragment {
 
 
         TextView textViewIP = rootView.findViewById(R.id.textViewIP);
-        Button buttonR1 = rootView.findViewById(R.id.buttonR1);
-        Button buttonR2 = rootView.findViewById(R.id.buttonR2);
-        Button buttonR3 = rootView.findViewById(R.id.buttonR3);
+        buttonR1 = rootView.findViewById(R.id.buttonR1);
+        buttonR2 = rootView.findViewById(R.id.buttonR2);
+        buttonR3 = rootView.findViewById(R.id.buttonR3);
         textC = rootView.findViewById(R.id.textC);
         textH = rootView.findViewById(R.id.textH);
         SwipeRefreshLayout swiperefresh = rootView.findViewById(R.id.swiperefresh);
@@ -53,12 +58,9 @@ public class FragmentHome extends Fragment {
 
         vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
-
-
         setupButtonClickListener(buttonR1, "led3");
         setupButtonClickListener(buttonR2, "led2");
         setupButtonClickListener(buttonR3, "led1");
-
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
 
@@ -68,6 +70,8 @@ public class FragmentHome extends Fragment {
         NetworkUtils networkUtils = new NetworkUtils(new OkHttpClient(), savedIP);
         respons(networkUtils ,"temperature");
 
+        NetworkUtils networkUtils2 = new NetworkUtils(new OkHttpClient(), savedIP);
+        respons(networkUtils2 ,"status");
 
         return rootView;
     }
@@ -102,6 +106,17 @@ public class FragmentHome extends Fragment {
                         System.out.println(response);
                         if (post.equals("temperature")) {
                             setdatchik(response);
+                        } else if (post.equals("led1")) {
+                            changebut(1, Integer.parseInt(response.split("\r\n")[0].split(" ")[1]));
+                        } else if (post.equals("led2")) {
+                            changebut(2, Integer.parseInt(response.split("\r\n")[0].split(" ")[1]));
+                        } else if (post.equals("led3")) {
+                            changebut(3, Integer.parseInt(response.split("\r\n")[0].split(" ")[1]));
+                        } else if (post.equals("status")) {
+
+                            changebut(1, Integer.parseInt(response.split("\r\n")[0].split("rele1: ")[1]));
+                            changebut(2, Integer.parseInt(response.split("\r\n")[1].split("rele2: ")[1]));
+                            changebut(3, Integer.parseInt(response.split("\r\n")[2].split("rele3: ")[1]));
                         }
                     });
                 }
@@ -118,6 +133,30 @@ public class FragmentHome extends Fragment {
                 }
             }
         });
+
+    }
+
+
+    private void changebut(int id, int state) {
+        String color = "#42325E";
+        if (state == 0) {
+            color = "#2A203A";
+        }
+
+        switch (id) {
+            case 1:
+                buttonR3.setBackgroundColor(Color.parseColor(color));
+                break;
+
+            case 2:
+                buttonR2.setBackgroundColor(Color.parseColor(color));
+                break;
+
+            case 3:
+                buttonR1.setBackgroundColor(Color.parseColor(color));
+                break;
+        }
+
 
     }
 
