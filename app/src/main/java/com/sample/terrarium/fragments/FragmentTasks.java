@@ -13,13 +13,10 @@ import java.util.Map;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.sample.terrarium.R;
 import com.sample.terrarium.network.NetworkCallback;
 import com.sample.terrarium.network.NetworkUtils;
-
 import java.io.IOException;
-
 import okhttp3.OkHttpClient;
 
 public class FragmentTasks extends Fragment {
@@ -36,8 +33,6 @@ public class FragmentTasks extends Fragment {
         savedIP = sharedPreferences.getString("savedIP", "");
 
         NetworkUtils networkUtils = new NetworkUtils(new OkHttpClient(), savedIP);
-
-
 
         networkUtils.post("task", new NetworkCallback() {
             @Override
@@ -66,11 +61,7 @@ public class FragmentTasks extends Fragment {
             }
         });
 
-
-
-
         return rootView;
-
     }
 
 
@@ -99,14 +90,6 @@ public class FragmentTasks extends Fragment {
 
     private String parseTask(String task) {
         if (task != null && !task.isEmpty()) {
-//            String[] times = task.split("/");
-//            if (times[0].equals("-1:-1") || times[0].equals("-1-1")) {
-//                return "Null";
-//            }
-//            if (times.length == 2) {
-//                return times[0] + " / " + times[1];
-//            }
-
             if (task.startsWith("-1")) {
                 return "Null";
             }
@@ -114,8 +97,5 @@ public class FragmentTasks extends Fragment {
         }
         return task;
     }
-
-
-
 
 }

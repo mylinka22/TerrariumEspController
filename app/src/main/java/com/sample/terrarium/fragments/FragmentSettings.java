@@ -11,15 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.fragment.app.Fragment;
-
 import com.sample.terrarium.network.NetworkCallback;
 import com.sample.terrarium.network.NetworkUtils;
 import com.sample.terrarium.R;
-
 import java.io.IOException;
-
 import okhttp3.OkHttpClient;
 
 public class FragmentSettings extends Fragment {
@@ -34,7 +30,6 @@ public class FragmentSettings extends Fragment {
 
         Button buttonSaveIP = rootView.findViewById(R.id.ButtonSaveIP);
         EditText edittextViewIP = rootView.findViewById(R.id.edittextViewIP);
-
 
         Spinner spinner1 = rootView.findViewById(R.id.spinner1);
         EditText editHourin = rootView.findViewById(R.id.editHourin);
@@ -62,8 +57,6 @@ public class FragmentSettings extends Fragment {
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         savedIP = sharedPreferences.getString("savedIP", "");
-
-
 
 
         btnconfirm1.setOnClickListener(v -> {
@@ -98,7 +91,6 @@ public class FragmentSettings extends Fragment {
         });
 
 
-
         btnconfirm2.setOnClickListener(v -> {
 
             String id = "-1";
@@ -129,9 +121,6 @@ public class FragmentSettings extends Fragment {
                 respons(networkUtils, "everyhour?id="+i+"&status=0&timein=-1&timeout=-1&time=-1");
             }
         });
-
-
-
 
         return rootView;
     }
@@ -164,7 +153,6 @@ public class FragmentSettings extends Fragment {
                 // Обработка ошибки
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
-                        // Обновите UI здесь, если нужно
                         Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
                 }

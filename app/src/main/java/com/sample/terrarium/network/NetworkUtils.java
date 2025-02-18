@@ -1,7 +1,6 @@
 package com.sample.terrarium.network;
 
 import java.io.IOException;
-
 import okhttp3.Call;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

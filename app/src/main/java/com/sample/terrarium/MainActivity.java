@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.MenuItem;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -37,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
             System.out.println(123213);
 
         }
-
-
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -71,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Load default fragment
         if (savedInstanceState == null) {
             bottomNavigationView.setSelectedItemId(R.id.navigation_home); // Change to your default menu item id
         }
@@ -85,9 +81,6 @@ public class MainActivity extends AppCompatActivity {
             vibrator.vibrate(milliseconds);
         }
     }
-
-
-
 }
 
 

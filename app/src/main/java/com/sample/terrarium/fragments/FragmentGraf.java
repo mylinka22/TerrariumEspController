@@ -8,27 +8,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.sample.terrarium.R;
 import com.sample.terrarium.network.NetworkCallback;
 import com.sample.terrarium.network.NetworkUtils;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 import okhttp3.OkHttpClient;
 
 public class FragmentGraf extends Fragment {
@@ -41,8 +35,6 @@ public class FragmentGraf extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_graf, container, false);
-
-
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         savedIP = sharedPreferences.getString("savedIP", "");
@@ -61,11 +53,7 @@ public class FragmentGraf extends Fragment {
 
                         parseAndAddEntries(response);
 
-
                         setGraf(rootView);
-
-
-
                     });
                 }
             }
@@ -80,12 +68,8 @@ public class FragmentGraf extends Fragment {
             }
         });
 
-
-
-
         return rootView;
     }
-
 
 
     private void setGraf(View rootView){
@@ -115,7 +99,6 @@ public class FragmentGraf extends Fragment {
         chart.getAxisLeft().setGranularity(1f);
         chart.invalidate();
 
-
         LineChart chart2 = rootView.findViewById(R.id.chart2);
         LineDataSet dataSet2 = new LineDataSet(humidityEntries, "Label");
         dataSet2.setColor(Color.parseColor("#40E0D0"));
@@ -140,7 +123,6 @@ public class FragmentGraf extends Fragment {
         chart2.getXAxis().setGranularity(1f);
         chart2.getAxisLeft().setGranularity(1f);
         chart2.invalidate();
-
     }
 
     private void parseAndAddEntries(String response) {
@@ -185,7 +167,7 @@ public class FragmentGraf extends Fragment {
                 if (currentHourOsn == 0)
                     currentHourOsn = 24;
 
-                if (currentHourOsn >= 9) { //todo >= / >
+                if (currentHourOsn >= 9) {
                     entries.add(new Entry(hour, values[i]));
                 } else {
                     if (i > (24-(24+currentHour-values.length+2)+1)) {
@@ -195,14 +177,6 @@ public class FragmentGraf extends Fragment {
                 }
             }
         }
-
-
-
-//        for (int i = 1; i < values.length; i++) {
-//            entries.add(new Entry(i, values[i]));
-//
-//        }
     }
-
 
 }

@@ -1,7 +1,6 @@
 package com.sample.terrarium.fragments;
 
 import androidx.fragment.app.Fragment;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -11,21 +10,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.IOException;
-
 import okhttp3.OkHttpClient;
-
-
 import android.os.Vibrator;
 import android.os.Build;
-
 import com.sample.terrarium.network.NetworkCallback;
 import com.sample.terrarium.network.NetworkUtils;
 import com.sample.terrarium.R;
@@ -45,7 +38,6 @@ public class FragmentHome extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
 
         TextView textViewIP = rootView.findViewById(R.id.textViewIP);
         buttonR1 = rootView.findViewById(R.id.buttonR1);
@@ -127,7 +119,6 @@ public class FragmentHome extends Fragment {
                 // Обработка ошибки
                 if (getActivity() != null) {
                     getActivity().runOnUiThread(() -> {
-                        // Обновите UI здесь, если нужно
                         Toast.makeText(getActivity(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
                 }
@@ -156,8 +147,6 @@ public class FragmentHome extends Fragment {
                 buttonR1.setBackgroundColor(Color.parseColor(color));
                 break;
         }
-
-
     }
 
     private void setdatchik(String response){
@@ -165,7 +154,6 @@ public class FragmentHome extends Fragment {
         String[] lines = response.split("\r\n");
         int datchiktValue = -1;
         int datchikhValue = -1;
-
 
         for (String line : lines) {
             if (line.startsWith("Datchikt:")) {
@@ -180,8 +168,6 @@ public class FragmentHome extends Fragment {
 
         textC.setText(datchiktValue + "°С");
         textH.setText(datchikhValue + "%");
-
-
     }
 
     private void vibrate(int milliseconds) {
@@ -192,6 +178,4 @@ public class FragmentHome extends Fragment {
             vibrator.vibrate(milliseconds);
         }
     }
-
-
 }
